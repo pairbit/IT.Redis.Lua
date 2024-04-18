@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT.Redis.Lua", "IT.Redis.Lua\IT.Redis.Lua.csproj", "{F01C2B16-2482-481E-B65A-47142C32BF67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IT.Redis.Lua", "IT.Redis.Lua\IT.Redis.Lua.csproj", "{F01C2B16-2482-481E-B65A-47142C32BF67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT.Redis.Lua.Tests", "IT.Redis.Lua.Tests\IT.Redis.Lua.Tests.csproj", "{C2A6E409-EABC-4ED7-94AC-25819887DF30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F01C2B16-2482-481E-B65A-47142C32BF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F01C2B16-2482-481E-B65A-47142C32BF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F01C2B16-2482-481E-B65A-47142C32BF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A6E409-EABC-4ED7-94AC-25819887DF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A6E409-EABC-4ED7-94AC-25819887DF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A6E409-EABC-4ED7-94AC-25819887DF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A6E409-EABC-4ED7-94AC-25819887DF30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

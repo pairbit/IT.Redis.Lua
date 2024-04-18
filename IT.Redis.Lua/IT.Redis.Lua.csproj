@@ -6,4 +6,32 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Lua\HashSetAndExpireIfKeyNotExists.lua" />
+    <None Remove="Lua\HashSetIfFieldExists.lua" />
+    <None Remove="Lua\HashSetIfFieldNotExists.lua" />
+    <None Remove="Lua\HashSetIfKeyExists.lua" />
+    <None Remove="Lua\HashSetIfKeyExistsAndFieldNotExists.lua" />
+    <None Remove="Lua\HashSetIfKeyNotExists.lua" />
+    <None Remove="Lua\SetAddAndExpireIfKeyNotExists.lua" />
+    <None Remove="Lua\SetAddIfKeyExists.lua" />
+    <None Remove="Lua\SetAddIfKeyNotExists.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Lua\HashSetAndExpireIfKeyNotExists.lua" />
+    <EmbeddedResource Include="Lua\HashSetIfFieldExists.lua" />
+    <EmbeddedResource Include="Lua\HashSetIfFieldNotExists.lua" />
+    <EmbeddedResource Include="Lua\HashSetIfKeyExists.lua" />
+    <EmbeddedResource Include="Lua\HashSetIfKeyExistsAndFieldNotExists.lua" />
+    <EmbeddedResource Include="Lua\HashSetIfKeyNotExists.lua" />
+    <EmbeddedResource Include="Lua\SetAddAndExpireIfKeyNotExists.lua" />
+    <EmbeddedResource Include="Lua\SetAddIfKeyExists.lua" />
+    <EmbeddedResource Include="Lua\SetAddIfKeyNotExists.lua" />
+  </ItemGroup>
+	
+  <ItemGroup>
+	<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
+  </ItemGroup>
 </Project>
