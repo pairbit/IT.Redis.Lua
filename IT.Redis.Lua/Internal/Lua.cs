@@ -36,7 +36,7 @@ internal static class Lua
         using var stream = assembly.GetManifestResourceStream($"IT.Redis.Lua.Lua.{name}.lua")
             ?? throw new InvalidOperationException($"Lua script '{name}' not found");
 
-        using var reader = new StreamReader(stream);
+        using var reader = new System.IO.StreamReader(stream);
 
         return reader.ReadToEnd();
     }

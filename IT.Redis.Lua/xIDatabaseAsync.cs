@@ -1,6 +1,4 @@
-﻿using StackExchange.Redis;
-
-namespace IT.Redis.Lua;
+﻿namespace IT.Redis.Lua;
 
 using Internal;
 
