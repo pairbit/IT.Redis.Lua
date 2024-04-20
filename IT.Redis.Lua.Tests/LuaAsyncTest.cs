@@ -236,4 +236,84 @@ public class LuaAsyncTest
             await db.KeyDeleteAsync(key);
         }
     }
+
+    [Test]
+    public async Task HashSetIfKeyAndField()
+    {
+        RedisKey key = "Test:HashSetIfKeyAndField";
+        RedisValue nx = "nx";
+        RedisValue name1 = "name1";
+        RedisValue value1 = "value1";
+        HashEntry entry1 = new(name1, value1);
+        RedisValue name2 = "name2";
+        RedisValue value2 = "value2";
+        HashEntry entry2 = new(name2, value2);
+        RedisValue name3 = "name3";
+        RedisValue value3 = "value3";
+        RedisValue name4 = "name4";
+        RedisValue value4 = "value4";
+        RedisValue name5 = "name5";
+        RedisValue value5 = "value5";
+        RedisValue name6 = "name6";
+        RedisValue value6 = "value6";
+        RedisValue name7 = "name7";
+        RedisValue value7 = "value7";
+        var db = _db;
+
+        Assert.That(await db.KeyExistsAsync(key), Is.False);
+        Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, value1), Is.EqualTo(-1));
+        Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, name1, value1), Is.EqualTo(-1));
+        Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, [name1, name1, value1]), Is.EqualTo(-1));
+        Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, [entry1, entry2]), Is.EqualTo(-1));
+
+        try
+        {
+            Assert.That(await db.HashSetAsync(key, RedisValue.EmptyString, RedisValue.EmptyString), Is.True);
+            Assert.That(await db.KeyExistsAsync(key), Is.True);
+            Assert.That(await db.HashLengthAsync(key), Is.EqualTo(1));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, value1), Is.EqualTo(1));
+            Assert.That(await db.HashLengthAsync(key), Is.EqualTo(2));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, value2), Is.EqualTo(-2));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, name1, value2), Is.EqualTo(-2));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, [name1, name1, value2]), Is.EqualTo(-2));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name1, [entry2]), Is.EqualTo(-2));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashExistsAsync(key, name2), Is.False);
+
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name2, name1, value2), Is.EqualTo(0));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value2));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name2, [entry1]), Is.EqualTo(0));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, [name2, name1, value2]), Is.EqualTo(0));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value2));
+            Assert.That(await db.HashLengthAsync(key), Is.EqualTo(2));
+
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, name2, name2, value2), Is.EqualTo(1));
+            Assert.That(await db.HashGetAsync(key, name2), Is.EqualTo(value2));
+            Assert.That(await db.HashLengthAsync(key), Is.EqualTo(3));
+
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, [nx, name3, value3, name4, value4]), Is.EqualTo(2));
+            Assert.That(await db.HashGetAsync(key, name3), Is.EqualTo(value3));
+            Assert.That(await db.HashGetAsync(key, name4), Is.EqualTo(value4));
+            Assert.That(await db.HashLengthAsync(key), Is.EqualTo(5));
+
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value2));
+            Assert.That(await db.HashSetIfKeyExistsAndFieldNotExistsAsync(key, nx,
+                [new(name1, value1), new(name5, value5),
+                new(name6, value6), new(name7, value7)]), Is.EqualTo(3));
+            Assert.That(await db.HashGetAsync(key, name1), Is.EqualTo(value1));
+            Assert.That(await db.HashGetAsync(key, name5), Is.EqualTo(value5));
+            Assert.That(await db.HashGetAsync(key, name6), Is.EqualTo(value6));
+            Assert.That(await db.HashGetAsync(key, name7), Is.EqualTo(value7));
+            Assert.That(await db.HashLengthAsync(key), Is.EqualTo(8));
+        }
+        finally
+        {
+            await db.KeyDeleteAsync(key);
+        }
+    }
 }

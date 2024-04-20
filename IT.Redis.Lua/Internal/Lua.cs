@@ -14,6 +14,8 @@ internal static class Lua
 
     public static readonly string HashSetIfFieldExists;
     public static readonly string HashSetIfFieldNotExists;
+    public static readonly string HashSetIfKeyExistsAndFieldNotExists;
+    public static readonly string HashSetIfKeyExistsAndFieldNotExistsMulti;
 
     static Lua()
     {
@@ -29,6 +31,8 @@ internal static class Lua
 
         HashSetIfFieldExists = assembly.GetLua(nameof(HashSetIfFieldExists));
         HashSetIfFieldNotExists = assembly.GetLua(nameof(HashSetIfFieldNotExists));
+        HashSetIfKeyExistsAndFieldNotExists = assembly.GetLua(nameof(HashSetIfKeyExistsAndFieldNotExists));
+        HashSetIfKeyExistsAndFieldNotExistsMulti = assembly.GetLua(nameof(HashSetIfKeyExistsAndFieldNotExistsMulti));
     }
 
     private static string GetLua(this Assembly assembly, string name)

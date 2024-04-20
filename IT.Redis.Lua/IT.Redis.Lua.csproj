@@ -38,6 +38,7 @@
     <None Remove="Lua\HashSetIfFieldNotExists.lua" />
     <None Remove="Lua\HashSetIfKeyExists.lua" />
     <None Remove="Lua\HashSetIfKeyExistsAndFieldNotExists.lua" />
+    <None Remove="Lua\HashSetIfKeyExistsAndFieldNotExistsMulti.lua" />
     <None Remove="Lua\HashSetIfKeyNotExists.lua" />
     <None Remove="Lua\SetAddAndExpireIfKeyNotExists.lua" />
     <None Remove="Lua\SetAddIfKeyExists.lua" />
@@ -50,6 +51,7 @@
     <EmbeddedResource Include="Lua\HashSetIfFieldNotExists.lua" />
     <EmbeddedResource Include="Lua\HashSetIfKeyExists.lua" />
     <EmbeddedResource Include="Lua\HashSetIfKeyExistsAndFieldNotExists.lua" />
+    <EmbeddedResource Include="Lua\HashSetIfKeyExistsAndFieldNotExistsMulti.lua" />
     <EmbeddedResource Include="Lua\HashSetIfKeyNotExists.lua" />
     <EmbeddedResource Include="Lua\SetAddAndExpireIfKeyNotExists.lua" />
     <EmbeddedResource Include="Lua\SetAddIfKeyExists.lua" />
